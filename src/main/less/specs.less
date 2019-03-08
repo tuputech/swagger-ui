@@ -4,8 +4,10 @@
 
     line-height: 1;
     font-family: "Droid Sans", sans-serif;
+    width: 90%;
     min-width: 760px;
-    max-width: 960px;
+    // max-width: 9600px;
+    max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
 
@@ -45,24 +47,27 @@
         border-collapse: collapse;
         border-spacing: 0;
        .param-name-col {
-          width: 100px; 
-          max-width: 100px;
+          min-width: 100px;
+          // width: 100px;
+          // max-width: 100px;
         }
         .param-value-col {
-          width: 310px; 
-          max-width: 310px;
+            min-width: 310px; 
+          // width: 310px;
+          // max-width: 310px;
         }
         .param-description-col {
-          width: 200px; 
-          max-width: 200px;
+            min-width: 200px;
+          // width: 200px; 
+          // max-width: 400px;
         }
         .param-type-col {
           width: 100px; 
-          max-width: 100px;
+          // max-width: 100px;
         }
         .param-data-type-col {
-          width: 220px; 
-          max-width: 230px;
+          min-width: 220px;
+          // max-width: 230px;
         }
         thead {
             tr {
@@ -367,7 +372,8 @@
     }
 
     .body-textarea {
-        width: 300px;
+        // width: 300px;
+        width: 100%;
         height: 100px;
         border: 1px solid #aaa;
     }

@@ -31,7 +31,7 @@ window.SwaggerTranslator.learn({
     "Example Value":"示例",
     "Click to set as parameter value":"点击设置参数",
     "Model Schema":"模型架构",
-    "Model":"模型",
+    "Model":"数据结构",
     "apply":"应用",
     "Username":"用户名",
     "Password":"密码",
