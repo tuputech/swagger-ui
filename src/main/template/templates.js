@@ -703,7 +703,7 @@ templates['resource'] = template({"1":function(container,depth0,helpers,partials
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.url : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </ul>\n</div>\n<ul class='endpoints' id='"
     + ((stack1 = (helpers.sanitize || (depth0 && depth0.sanitize) || alias2).call(alias1,(depth0 != null ? depth0.id : depth0),{"name":"sanitize","hash":{},"data":data})) != null ? stack1 : "")
-    + "_endpoint_list' style='display:none'>\n\n</ul>\n";
+    + "_endpoint_list'>\n\n</ul>\n";
 },"useData":true});
 templates['response_content_type'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
