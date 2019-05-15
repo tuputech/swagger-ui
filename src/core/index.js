@@ -43,6 +43,7 @@ module.exports = function SwaggerUI(opts) {
     displayOperationId: false,
     displayRequestDuration: false,
     deepLinking: false,
+    tryItOutEnabled: false, //Disabling try-out at initial state
     requestInterceptor: (a => a),
     responseInterceptor: (a => a),
     showMutatedRequest: true,

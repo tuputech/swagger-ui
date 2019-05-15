@@ -9,8 +9,12 @@ const { opId } = helpers
 export default class OperationContainer extends PureComponent {
   constructor(props, context) {
     super(props, context)
+
+    const { getConfigs } = props
+    const { tryItOutEnabled = false } = getConfigs()
+
     this.state = {
-      tryItOutEnabled: false,
+      tryItOutEnabled,
       executeInProgress: false
     }
   }
