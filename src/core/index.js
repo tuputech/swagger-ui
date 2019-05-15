@@ -43,7 +43,13 @@ module.exports = function SwaggerUI(opts) {
     displayOperationId: false,
     displayRequestDuration: false,
     deepLinking: false,
+
+    // Added by Nickel #2019/05/14
     tryItOutEnabled: false, //Disabling try-out at initial state
+    // Added by Nickel #2019/05/15
+    // for using layout modification in components
+    tupuLayout: false,
+
     requestInterceptor: (a => a),
     responseInterceptor: (a => a),
     showMutatedRequest: true,

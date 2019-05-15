@@ -10,11 +10,14 @@ export default class OperationContainer extends PureComponent {
   constructor(props, context) {
     super(props, context)
 
+    // Added by Nickel #2019/05/15 
+    // for new configuration parameter 'tryItOutEnabled'
     const { getConfigs } = props
     const { tryItOutEnabled = false } = getConfigs()
 
     this.state = {
       tryItOutEnabled,
+      //tryItOutEnabled: false,
       executeInProgress: false
     }
   }

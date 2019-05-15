@@ -75,6 +75,9 @@ export default class Parameters extends Component {
 
     const isExecute = tryItOutEnabled && allowTryItOut
 
+    // Added tupuLayout by Nickel #2019/05/15
+    const { tupuLayout } = getConfigs()
+
     return (
       <div className="opblock-section">
         <div className="opblock-section-header">
@@ -91,6 +94,11 @@ export default class Parameters extends Component {
               <thead>
                 <tr>
                   <th className="col col_header parameters-col_name">Name</th>
+                  {
+                    tupuLayout ?
+                    <th className="col col_header parameters-col_description">Value</th>
+                    : null
+                  }
                   <th className="col col_header parameters-col_description">Description</th>
                 </tr>
               </thead>

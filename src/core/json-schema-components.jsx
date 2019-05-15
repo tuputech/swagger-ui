@@ -18,7 +18,10 @@ const JsonSchemaPropShape = {
   errors: ImPropTypes.list,
   required: PropTypes.bool,
   dispatchInitialValue: PropTypes.bool,
-  description: PropTypes.any
+  description: PropTypes.any,
+  // Added by Nickel #2019/05/15
+  // for specifying placeholder string instead of using description
+  placeholder: PropTypes.string,
 }
 
 const JsonSchemaDefaultProps = {
@@ -65,7 +68,7 @@ export class JsonSchema_string extends Component {
   }
   onEnumChange = (val) => this.props.onChange(val)
   render() {
-    let { getComponent, value, schema, errors, required, description } = this.props
+    let { getComponent, value, schema, errors, required, /*description,*/ placeholder, } = this.props
     let enumValue = schema["enum"]
 
     errors = errors.toJS ? errors.toJS() : []
@@ -97,7 +100,7 @@ export class JsonSchema_string extends Component {
                      value={value}
                      minLength={0}
                      debounceTimeout={350}
-                     placeholder={description}
+                     placeholder={placeholder /*description*/}
                      onChange={ this.onChange }
                      disabled={isDisabled}/>)
     }

@@ -115,7 +115,8 @@ export default class ParameterRow extends Component {
 
     let { isOAS3 } = specSelectors
 
-    const { showExtensions, showCommonExtensions } = getConfigs()
+    // Added tupuLayout by Nickel #2019/05/15
+    const { showExtensions, showCommonExtensions, tupuLayout, } = getConfigs()
 
     if(!param) {
       param = rawParam
@@ -187,7 +188,7 @@ export default class ParameterRow extends Component {
     }
 
     return (
-      <tr data-param-name={param.get("name")} data-param-in={param.get("in")}>
+      <tr data-param-name={param.get("name")} data-param-in={param.get("in")} className={tupuLayout ? "tupu-layout-param" : ""}>
         <td className="col parameters-col_name">
           <div className={required ? "parameter__name required" : "parameter__name"}>
             { param.get("name") }
@@ -207,6 +208,18 @@ export default class ParameterRow extends Component {
         </td>
 
         <td className="col parameters-col_description">
+          {
+            tupuLayout && !bodyParam ?
+            <div className="tupu-param-info">
+              <div className="parameter__in">{ param.get("in") }</div>
+              <div className="parameter__type">
+                { type }
+                { itemType && `[${itemType}]` }
+                { format && <span className="prop-format">(${format})</span>}
+              </div>
+            </div> : null
+          }
+
           { param.get("description") ? <Markdown source={ param.get("description") }/> : null }
 
           { (bodyParam || !isExecute) && isDisplayParamEnum ?
@@ -230,6 +243,7 @@ export default class ParameterRow extends Component {
                               value={ value }
                               required={ required }
                               description={param.get("description") ? `${param.get("name")} - ${param.get("description")}` : `${param.get("name")}`}
+                              placeholder=''// Added by Nickel #2019/05/15 
                               onChange={ this.onChangeWrapper }
                               errors={ paramWithMeta.get("errors") }
                               schema={ schema }/>
@@ -258,6 +272,14 @@ export default class ParameterRow extends Component {
           }
 
         </td>
+
+        {
+          tupuLayout && !bodyParam ? 
+          <td className="col tupu-description">
+            { param.get("description") ? <Markdown source={ param.get("description") }/> : null }
+          </td>
+          : null
+        }
 
       </tr>
     )
