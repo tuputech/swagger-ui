@@ -257,7 +257,13 @@ export const taggedOperations = (state) => ({ getConfigs }) => {
     .sortBy(
       (val, key) => key, // get the name of the tag to be passed to the sorter
       (tagA, tagB) => {
-        let sortFn = (typeof tagsSorter === "function" ? tagsSorter : sorters.tagsSorter[ tagsSorter ])
+        // Modified by Nickel #2019/05/16
+        // let sortFn = (typeof tagsSorter === "function" ? tagsSorter : sorters.tagsSorter[ tagsSorter ])
+        // return (!sortFn ? null : sortFn(_tagA || tagA, _tagB || tagB))
+        if (typeof tagsSorter === "function") {
+          return tagsSorter(tagDetails(state, tagA) || tagA, tagDetails(state, tagB) || tagB)
+        }
+        let sortFn = sorters.tagsSorter[ tagsSorter ]
         return (!sortFn ? null : sortFn(tagA, tagB))
       }
     )

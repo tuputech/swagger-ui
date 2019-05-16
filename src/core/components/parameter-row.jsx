@@ -26,9 +26,9 @@ export default class ParameterRow extends Component {
 
     this.setDefaultValue()
 
-    // Added  by Nickel #2019/05/16
+    // Added by Nickel #2019/05/16
     this.state = {
-      bodyParamTab: ''
+      bodyParamTab: ""
     }
   }
 
@@ -115,7 +115,7 @@ export default class ParameterRow extends Component {
     }
   }
 
-  // Added  by Nickel #2019/05/16
+  // Added by Nickel #2019/05/16
   onBodyParamTabChange =( tabName ) => {
     this.setState({
       bodyParamTab: tabName
@@ -127,7 +127,7 @@ export default class ParameterRow extends Component {
 
     let { isOAS3 } = specSelectors
 
-    // Added tupuLayout by Nickel #2019/05/15
+    // Added by Nickel with tupuLayout #2019/05/15
     const { showExtensions, showCommonExtensions, tupuLayout, } = getConfigs()
 
     if(!param) {
@@ -277,7 +277,7 @@ export default class ParameterRow extends Component {
                                                 specSelectors={ specSelectors }
                                                 schema={ param.get("schema") }
                                                 example={ bodyParam }
-                                                // Added by Nicke #2019/05/16
+                                                // Added by Nickel #2019/05/16
                                                 onTabChange={ this.onBodyParamTabChange }
                                                 />
               : null
