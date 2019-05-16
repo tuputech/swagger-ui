@@ -25,6 +25,11 @@ export default class ParameterRow extends Component {
     super(props, context)
 
     this.setDefaultValue()
+
+    // Added  by Nickel #2019/05/16
+    this.state = {
+      bodyParamTab: ''
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -110,6 +115,13 @@ export default class ParameterRow extends Component {
     }
   }
 
+  // Added  by Nickel #2019/05/16
+  onBodyParamTabChange =( tabName ) => {
+    this.setState({
+      bodyParamTab: tabName
+    })
+  }
+
   render() {
     let {param, rawParam, getComponent, getConfigs, isExecute, fn, onChangeConsumes, specSelectors, pathMethod, specPath} = this.props
 
@@ -178,6 +190,9 @@ export default class ParameterRow extends Component {
       isDisplayParamEnum = true
     }
 
+    // Added by Nickel #2019/05/16
+    let HighlightCode, jsonExample
+
     // Default and Example Value for readonly doc
     if ( param !== undefined ) {
       paramDefaultValue = schema.get("default")
@@ -185,6 +200,10 @@ export default class ParameterRow extends Component {
       if (paramExample === undefined) {
         paramExample = param.get("x-example")
       }
+
+      // Added by Nickel #2019/05/16
+      HighlightCode = getComponent("highlightCode")
+      jsonExample = param.get("value")
     }
 
     return (
@@ -257,7 +276,10 @@ export default class ParameterRow extends Component {
                                                 isExecute={ isExecute }
                                                 specSelectors={ specSelectors }
                                                 schema={ param.get("schema") }
-                                                example={ bodyParam }/>
+                                                example={ bodyParam }
+                                                // Added by Nicke #2019/05/16
+                                                onTabChange={ this.onBodyParamTabChange }
+                                                />
               : null
           }
 
@@ -274,9 +296,18 @@ export default class ParameterRow extends Component {
         </td>
 
         {
-          tupuLayout && !bodyParam ? 
+          tupuLayout ? 
           <td className="col tupu-description">
-            { param.get("description") ? <Markdown source={ param.get("description") }/> : null }
+            { !bodyParam && param.get("description") ? <Markdown source={ param.get("description") }/> : null }
+            {
+              //only show example on the right side of edit-box
+              bodyParam && this.state.bodyParamTab === "model" ?
+              <div>
+                <div className="example_caption">Example Value</div>
+                <HighlightCode className="body-param__example" value={ jsonExample }/>
+              </div>
+              : null
+            }
           </td>
           : null
         }

@@ -11,6 +11,8 @@ export default class ModelExample extends React.Component {
     isExecute: PropTypes.bool,
     getConfigs: PropTypes.func.isRequired,
     specPath: ImPropTypes.list.isRequired,
+    // Added by Nicke #2019/05/16
+    onTabChange: PropTypes.func,
   }
 
   constructor(props, context) {
@@ -28,9 +30,15 @@ export default class ModelExample extends React.Component {
   activeTab =( e ) => {
     let { target : { dataset : { name } } } = e
 
+    // Added by Nicke #2019/05/16
+    if (name === this.state.activeTab) return
+
     this.setState({
       activeTab: name
     })
+    
+    // Added by Nicke #2019/05/16
+    this.props.onTabChange && this.props.onTabChange(name)
   }
 
   componentWillReceiveProps(props) {
