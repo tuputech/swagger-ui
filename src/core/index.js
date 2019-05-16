@@ -49,6 +49,8 @@ module.exports = function SwaggerUI(opts) {
     // Added by Nickel #2019/05/15
     // for using layout modification in components
     tupuLayout: false,
+    // Added by Nickel #2019/05/16
+    getLangText: (txt) => txt,
 
     requestInterceptor: (a => a),
     responseInterceptor: (a => a),
