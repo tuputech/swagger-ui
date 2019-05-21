@@ -15,7 +15,9 @@ export default class ResponseBody extends React.PureComponent {
     contentType: PropTypes.string,
     getComponent: PropTypes.func.isRequired,
     headers: PropTypes.object,
-    url: PropTypes.string
+    url: PropTypes.string,
+    // Added by Nickel #2019/05/21
+    getConfigs: PropTypes.func.isRequired,
   }
 
   updateParsedContent = (prevContent) => {
@@ -49,12 +51,16 @@ export default class ResponseBody extends React.PureComponent {
   }
 
   render() {
-    let { content, contentType, url, headers={}, getComponent } = this.props
+    // Added by Nickel with getConfigs #2019/05/21
+    let { content, contentType, url, headers={}, getComponent, getConfigs } = this.props
     const { parsedContent } = this.state
     const HighlightCode = getComponent("highlightCode")
     const downloadName = "response_" + new Date().getTime()
     let body, bodyEl
     url = url || ""
+
+    // Added by Nickel #2019/05/21
+    const { getLangText } = getConfigs()
 
     if (
       /^application\/octet-stream/i.test(contentType) ||
@@ -99,7 +105,7 @@ export default class ResponseBody extends React.PureComponent {
         body = "can't parse JSON.  Raw result:\n\n" + content
       }
 
-      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.json`} value={ body } />
+      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.json`} value={ body } getConfigs={ getConfigs } />
 
       // XML
     } else if (/xml/i.test(contentType)) {
@@ -107,11 +113,11 @@ export default class ResponseBody extends React.PureComponent {
         textNodesOnSameLine: true,
         indentor: "  "
       })
-      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.xml`} value={ body } />
+      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.xml`} value={ body } getConfigs={ getConfigs } />
 
       // HTML or Plain Text
     } else if (toLower(contentType) === "text/html" || /text\/plain/.test(contentType)) {
-      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.html`} value={ content } />
+      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.html`} value={ content } getConfigs={ getConfigs } />
 
       // Image
     } else if (/^image\//i.test(contentType)) {
@@ -125,7 +131,7 @@ export default class ResponseBody extends React.PureComponent {
     } else if (/^audio\//i.test(contentType)) {
       bodyEl = <pre><audio controls><source src={ url } type={ contentType } /></audio></pre>
     } else if (typeof content === "string") {
-      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.txt`} value={ content } />
+      bodyEl = <HighlightCode downloadable fileName={`${downloadName}.txt`} value={ content } getConfigs={ getConfigs } />
     } else if ( content.size > 0 ) {
       // We don't know the contentType, but there was some content returned
       if(parsedContent) {
@@ -135,7 +141,7 @@ export default class ResponseBody extends React.PureComponent {
           <p className="i">
             Unrecognized response type; displaying content as text.
           </p>
-          <HighlightCode downloadable fileName={`${downloadName}.txt`} value={ parsedContent } />
+          <HighlightCode downloadable fileName={`${downloadName}.txt`} value={ parsedContent } getConfigs={ getConfigs } />
         </div>
 
       } else {
@@ -150,7 +156,7 @@ export default class ResponseBody extends React.PureComponent {
     }
 
     return ( !bodyEl ? null : <div>
-        <h5>Response body</h5>
+        <h5>{ getLangText("Response body") }</h5>
         { bodyEl }
       </div>
     )

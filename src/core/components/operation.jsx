@@ -192,14 +192,18 @@ export default class Operation extends PureComponent {
                     specSelectors={ specSelectors }
                     path={ path }
                     method={ method }
-                    onExecute={ onExecute } />
+                    onExecute={ onExecute }
+                    getConfigs={ getConfigs }
+                  />
               }
 
               { (!tryItOutEnabled || !response || !allowTryItOut) ? null :
                   <Clear
                     specActions={ specActions }
                     path={ path }
-                    method={ method }/>
+                    method={ method }
+                    getConfigs={ getConfigs }
+                  />
               }
             </div>
 

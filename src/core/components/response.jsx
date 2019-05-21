@@ -5,20 +5,20 @@ import cx from "classnames"
 import { fromJS, Seq, Iterable, List, Map } from "immutable"
 import { getSampleSchema, fromJSOrdered, stringify } from "core/utils"
 
-const getExampleComponent = ( sampleResponse, examples, HighlightCode ) => {
+const getExampleComponent = ( sampleResponse, examples, HighlightCode, getConfigs ) => {
   if ( examples && examples.size ) {
     return examples.entrySeq().map( ([ key, example ]) => {
       let exampleValue = stringify(example)
 
       return (<div key={ key }>
         <h5>{ key }</h5>
-        <HighlightCode className="example" value={ exampleValue } />
+        <HighlightCode className="example" value={ exampleValue } getConfigs={ getConfigs } />
       </div>)
     }).toArray()
   }
 
   if ( sampleResponse ) { return <div>
-      <HighlightCode className="example" value={ sampleResponse } />
+      <HighlightCode className="example" value={ sampleResponse } getConfigs={ getConfigs } />
     </div>
   }
   return null
@@ -124,7 +124,7 @@ export default class Response extends React.Component {
       })
     }
 
-    let example = getExampleComponent( sampleResponse, examples, HighlightCode )
+    let example = getExampleComponent( sampleResponse, examples, HighlightCode, getConfigs )
 
     return (
       <tr className={ "response " + ( className || "") } data-code={code}>

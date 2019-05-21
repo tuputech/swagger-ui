@@ -75,14 +75,15 @@ export default class Parameters extends Component {
 
     const isExecute = tryItOutEnabled && allowTryItOut
 
-    // Added tupuLayout by Nickel #2019/05/15
-    const { tupuLayout } = getConfigs()
+    // Addedby Nickel with tupuLayout  #2019/05/15
+    // Added by Nickel with getLangText #2019/05/21
+    const { tupuLayout, getLangText } = getConfigs()
 
     return (
       <div className="opblock-section">
         <div className="opblock-section-header">
           <div className="tab-header">
-            <h4 className="opblock-title">Parameters</h4>
+            <h4 className="opblock-title">{ getLangText("Parameters") }</h4>
           </div>
             { allowTryItOut ? (
               <TryItOutButton enabled={ tryItOutEnabled } onCancelClick={ onCancelClick } onTryoutClick={ onTryoutClick } />
@@ -93,13 +94,13 @@ export default class Parameters extends Component {
             <table className="parameters">
               <thead>
                 <tr>
-                  <th className="col col_header parameters-col_name">Name</th>
+                  <th className="col col_header parameters-col_name">{getLangText("Name")}</th>
                   {
                     tupuLayout ?
-                    <th className="col col_header parameters-col_description">Value</th>
+                    <th className="col col_header parameters-col_description">{getLangText("Value")}</th>
                     : null
                   }
-                  <th className="col col_header parameters-col_description">Description</th>
+                  <th className="col col_header parameters-col_description">{getLangText("Description")}</th>
                 </tr>
               </thead>
               <tbody>

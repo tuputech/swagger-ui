@@ -8,7 +8,9 @@ export default class HighlightCode extends Component {
     value: PropTypes.string.isRequired,
     className: PropTypes.string,
     downloadable: PropTypes.bool,
-    fileName: PropTypes.string
+    fileName: PropTypes.string,
+    // Added by Nickel #2019/05/21
+    getConfigs: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -47,14 +49,18 @@ export default class HighlightCode extends Component {
   }
 
   render () {
-    let { value, className, downloadable } = this.props
+    // Added by Nickel with getConfigs #2019/05/21
+    let { value, className, downloadable, getConfigs } = this.props
     className = className || ""
+
+    // Added by Nickel #2019/05/21
+    const { getLangText } = getConfigs ? getConfigs() : { getLangText: t=>t }
 
     return (
       <div className="highlight-code">
         { !downloadable ? null :
           <div className="download-contents" onClick={this.downloadText}>
-            Download
+            { getLangText("Download") }
           </div>
         }
         <pre

@@ -3,27 +3,29 @@ import PropTypes from "prop-types"
 import ImPropTypes from "react-immutable-proptypes"
 import { Iterable } from "immutable"
 
-const Headers = ( { headers } )=>{
+const Headers = ( { headers, getLangText } )=>{
   return (
     <div>
-      <h5>Response headers</h5>
+      <h5>{ getLangText("Response headers") }</h5>
       <pre>{headers}</pre>
     </div>)
 }
 Headers.propTypes = {
-  headers: PropTypes.array.isRequired
+  headers: PropTypes.array.isRequired,
+  getLangText: PropTypes.func.isRequired
 }
 
-const Duration = ( { duration } ) => {
+const Duration = ( { duration, getLangText } ) => {
   return (
     <div>
-      <h5>Request duration</h5>
+      <h5>{ getLangText("Request duration") }</h5>
       <pre>{duration} ms</pre>
     </div>
   )
 }
 Duration.propTypes = {
-  duration: PropTypes.number.isRequired
+  duration: PropTypes.number.isRequired,
+  getLangText: PropTypes.func.isRequired
 }
 
 
@@ -49,7 +51,8 @@ export default class LiveResponse extends React.Component {
 
   render() {
     const { response, getComponent, getConfigs, displayRequestDuration, specSelectors, path, method } = this.props
-    const { showMutatedRequest } = getConfigs()
+    // Added by Nickel with getLangText #2019/05/21
+    const { showMutatedRequest, getLangText } = getConfigs()
 
     const curlRequest = showMutatedRequest ? specSelectors.mutatedRequestFor(path, method) : specSelectors.requestFor(path, method)
     const status = response.get("status")
@@ -73,18 +76,18 @@ export default class LiveResponse extends React.Component {
       <div>
         { curlRequest && <Curl request={ curlRequest }/> }
         { url && <div>
-            <h4>Request URL</h4>
+            <h4>{ getLangText("Request URL") }</h4>
             <div className="request-url">
               <pre>{url}</pre>
             </div>
           </div>
         }
-        <h4>Server response</h4>
+        <h4>{ getLangText("Server response") }</h4>
         <table className="responses-table live-responses-table">
           <thead>
           <tr className="responses-header">
-            <td className="col col_header response-col_status">Code</td>
-            <td className="col col_header response-col_description">Details</td>
+            <td className="col col_header response-col_status">{ getLangText("Code") }</td>
+            <td className="col col_header response-col_description">{ getLangText("Details") }</td>
           </tr>
           </thead>
           <tbody>
@@ -110,14 +113,16 @@ export default class LiveResponse extends React.Component {
                                        contentType={ contentType }
                                        url={ url }
                                        headers={ headers }
-                                       getComponent={ getComponent }/>
+                                       getComponent={ getComponent }
+                                       getConfigs={ getConfigs }
+                        />
                        : null
                 }
                 {
-                  hasHeaders ? <Headers headers={ returnObject }/> : null
+                  hasHeaders ? <Headers headers={ returnObject } getLangText={ getLangText } /> : null
                 }
                 {
-                  displayRequestDuration && duration ? <Duration duration={ duration } /> : null
+                  displayRequestDuration && duration ? <Duration duration={ duration } getLangText={ getLangText } /> : null
                 }
               </td>
             </tr>

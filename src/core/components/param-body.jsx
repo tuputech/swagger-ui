@@ -17,7 +17,9 @@ export default class ParamBody extends PureComponent {
     getComponent: PropTypes.func.isRequired,
     isExecute: PropTypes.bool,
     specSelectors: PropTypes.object.isRequired,
-    pathMethod: PropTypes.array.isRequired
+    pathMethod: PropTypes.array.isRequired,
+    // Addedby Nickel  #2019/05/15
+    getConfigs: PropTypes.func.isRequired,
   };
 
   static defaultProp = {
@@ -99,6 +101,8 @@ export default class ParamBody extends PureComponent {
       pathMethod,
 
       getComponent,
+      // Added by Nicke #2019/05/16
+      getConfigs,
     } = this.props
 
     const Button = getComponent("Button")
@@ -112,6 +116,9 @@ export default class ParamBody extends PureComponent {
     let consumes = this.props.consumes && this.props.consumes.size ? this.props.consumes : ParamBody.defaultProp.consumes
 
     let { value, isEditBox } = this.state
+
+    // Added by Nickel #2019/05/21
+    const { getLangText } = getConfigs()
 
     return (
       <div className="body-param" data-param-name={param.get("name")} data-param-in={param.get("in")}>
@@ -131,7 +138,7 @@ export default class ParamBody extends PureComponent {
                          </div>
           }
           <label htmlFor="">
-            <span>Parameter content type</span>
+            <span>{ getLangText("Parameter content type") }</span>
             <ContentType value={ consumesValue } contentTypes={ consumes } onChange={onChangeConsumes} className="body-param-content-type" />
           </label>
         </div>

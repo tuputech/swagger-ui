@@ -10,9 +10,13 @@ export default class Clear extends Component {
   }
 
   render(){
+    // Added by Nickel #2019/05/21
+    const { getConfigs } = this.props
+    const { getLangText } = getConfigs()
+
     return (
       <button className="btn btn-clear opblock-control__btn" onClick={ this.onClick }>
-        Clear
+        { getLangText("Clear") }
       </button>
     )
   }
@@ -21,5 +25,7 @@ export default class Clear extends Component {
     specActions: PropTypes.object.isRequired,
     path: PropTypes.string.isRequired,
     method: PropTypes.string.isRequired,
+    // Added by Nickel #2019/05/21
+    getConfigs: PropTypes.func.isRequired,
   }
 }

@@ -128,7 +128,8 @@ export default class ParameterRow extends Component {
     let { isOAS3 } = specSelectors
 
     // Added by Nickel with tupuLayout #2019/05/15
-    const { showExtensions, showCommonExtensions, tupuLayout, } = getConfigs()
+      // Added by Nickel with getLangText #2019/05/21
+    const { showExtensions, showCommonExtensions, tupuLayout, getLangText } = getConfigs()
 
     if(!param) {
       param = rawParam
@@ -149,6 +150,7 @@ export default class ParameterRow extends Component {
                    isExecute={ isExecute }
                    specSelectors={ specSelectors }
                    pathMethod={ pathMethod }
+                   getConfigs={ getConfigs }
       />
 
     const ModelExample = getComponent("modelExample")
@@ -303,8 +305,8 @@ export default class ParameterRow extends Component {
               //only show example on the right side of edit-box
               bodyParam && this.state.bodyParamTab === "model" ?
               <div>
-                <div className="example_caption">Example Value</div>
-                <HighlightCode className="body-param__example" value={ jsonExample }/>
+                <div className="example_caption">{getLangText("Example Value")}</div>
+                <HighlightCode className="body-param__example" value={ jsonExample } getConfigs={ getConfigs }/>
               </div>
               : null
             }

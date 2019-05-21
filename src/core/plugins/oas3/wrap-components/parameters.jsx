@@ -110,12 +110,15 @@ class Parameters extends Component {
     const requestBody = operation.get("requestBody")
     const requestBodySpecPath = specPath.slice(0, -1).push("requestBody") // remove the "parameters" part
 
+    // Added by Nickel #2019/05/21
+    const { getLangText } = getConfigs()
+
     return (
       <div className="opblock-section">
         <div className="opblock-section-header">
           <div className="tab-header">
             <div onClick={() => this.toggleTab("parameters")} className={`tab-item ${this.state.parametersVisible && "active"}`}>
-              <h4 className="opblock-title"><span>Parameters</span></h4>
+              <h4 className="opblock-title"><span>{ getLangText("Parameters") }</span></h4>
             </div>
             { operation.get("callbacks") ?
               (

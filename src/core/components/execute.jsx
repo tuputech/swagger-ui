@@ -9,7 +9,9 @@ export default class Execute extends Component {
     operation: PropTypes.object.isRequired,
     path: PropTypes.string.isRequired,
     method: PropTypes.string.isRequired,
-    onExecute: PropTypes.func
+    onExecute: PropTypes.func,
+    // Added by Nickel #2019/05/21
+    getConfigs: PropTypes.func.isRequired,
   }
 
   onClick=()=>{
@@ -28,9 +30,13 @@ export default class Execute extends Component {
   onChangeProducesWrapper = ( val ) => this.props.specActions.changeProducesValue([this.props.path, this.props.method], val)
 
   render(){
+    // Added by Nickel #2019/05/21
+    const { getConfigs } = this.props
+    const { getLangText } = getConfigs()
+
     return (
         <button className="btn execute opblock-control__btn" onClick={ this.onClick }>
-          Execute
+          { getLangText("Execute") }
         </button>
     )
   }

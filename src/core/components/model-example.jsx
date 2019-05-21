@@ -49,7 +49,8 @@ export default class ModelExample extends React.Component {
 
   render() {
     let { getComponent, specSelectors, schema, example, isExecute, getConfigs, specPath } = this.props
-    let { defaultModelExpandDepth } = getConfigs()
+    // Added by Nickel with getLangText #2019/05/21
+    let { defaultModelExpandDepth, getLangText } = getConfigs()
     const ModelWrapper = getComponent("ModelWrapper")
 
     let isOAS3 = specSelectors.isOAS3()
@@ -57,11 +58,11 @@ export default class ModelExample extends React.Component {
     return <div>
       <ul className="tab">
         <li className={ "tabitem" + ( this.state.activeTab === "example" ? " active" : "") }>
-          <a className="tablinks" data-name="example" onClick={ this.activeTab }>{isExecute ? "Edit Value" : "Example Value"}</a>
+          <a className="tablinks" data-name="example" onClick={ this.activeTab }>{isExecute ? getLangText("Edit Value") : getLangText("Example Value")}</a>
         </li>
         { schema ? <li className={ "tabitem" + ( this.state.activeTab === "model" ? " active" : "") }>
           <a className={ "tablinks" + ( isExecute ? " inactive" : "" )} data-name="model" onClick={ this.activeTab }>
-            {isOAS3 ? "Schema" : "Model" }
+            {isOAS3 ? getLangText("Schema") : getLangText("Model") }
           </a>
         </li> : null }
       </ul>
