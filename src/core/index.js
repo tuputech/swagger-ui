@@ -51,6 +51,8 @@ module.exports = function SwaggerUI(opts) {
     tupuLayout: false,
     // Added by Nickel #2019/05/16
     getLangText: (keyTxt, optTxt) => optTxt || keyTxt,
+    // Added by Nickel #2019/05/22
+    disablePreventDefaultOnScroll: false,
 
     requestInterceptor: (a => a),
     responseInterceptor: (a => a),

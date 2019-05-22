@@ -44,7 +44,9 @@ export default class HighlightCode extends Component {
     const isScrollingPastBottom = scrollOffset >= contentHeight && deltaY > 0
 
     if (isElementScrollable && (isScrollingPastTop || isScrollingPastBottom)) {
-      e.preventDefault()
+      const { getConfigs } = this.props
+      const { disablePreventDefaultOnScroll = false } = getConfigs ? getConfigs() : {}
+      if (!disablePreventDefaultOnScroll) e.preventDefault()
     }
   }
 
