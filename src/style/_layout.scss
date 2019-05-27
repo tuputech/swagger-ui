@@ -609,7 +609,7 @@
     @include text_code($opblock-body-font-color);
     span
     {
-        color: $opblock-body-font-color !important;
+        color: $opblock-body-font-color;// !important;
     }
 
     .headerline
