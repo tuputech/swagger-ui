@@ -101,7 +101,6 @@ export class JsonSchema_string extends Component {
                      title={ errors.length ? errors : ""}
                      value={value}
                      name={ keyName /* Add by Nickel #2019/05/28 */ }
-                     data-name={keyName+"-abcde"}
                      minLength={0}
                      debounceTimeout={350}
                      placeholder={placeholder /*description*/}
