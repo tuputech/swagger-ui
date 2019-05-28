@@ -92,37 +92,39 @@ export default class Parameters extends Component {
         { !parameters.count() ? <div className="opblock-description-wrapper"><p>No parameters</p></div> :
           <div className="table-container">
             <table className="parameters">
-              <thead>
-                <tr>
-                  <th className="col col_header parameters-col_name">{getLangText("Name")}</th>
+              <form acceptCharset="UTF-8" className="sandbox">
+                <thead>
+                  <tr>
+                    <th className="col col_header parameters-col_name">{getLangText("Name")}</th>
+                    {
+                      tupuLayout ?
+                      <th className="col col_header parameters-col_description">{getLangText("Value")}</th>
+                      : null
+                    }
+                    <th className="col col_header parameters-col_description">{getLangText("Description")}</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {
-                    tupuLayout ?
-                    <th className="col col_header parameters-col_description">{getLangText("Value")}</th>
-                    : null
+                    eachMap(parameters, (parameter, i) => (
+                      <ParameterRow
+                        fn={ fn }
+                        specPath={specPath.push(i.toString())}
+                        getComponent={ getComponent }
+                        getConfigs={ getConfigs }
+                        rawParam={ parameter }
+                        param={ specSelectors.parameterWithMetaByIdentity(pathMethod, parameter) }
+                        key={ `${parameter.get( "in" )}.${parameter.get("name")}` }
+                        onChange={ this.onChange }
+                        onChangeConsumes={this.onChangeConsumesWrapper}
+                        specSelectors={ specSelectors }
+                        specActions={specActions}
+                        pathMethod={ pathMethod }
+                        isExecute={ isExecute }/>
+                    )).toArray()
                   }
-                  <th className="col col_header parameters-col_description">{getLangText("Description")}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  eachMap(parameters, (parameter, i) => (
-                    <ParameterRow
-                      fn={ fn }
-                      specPath={specPath.push(i.toString())}
-                      getComponent={ getComponent }
-                      getConfigs={ getConfigs }
-                      rawParam={ parameter }
-                      param={ specSelectors.parameterWithMetaByIdentity(pathMethod, parameter) }
-                      key={ `${parameter.get( "in" )}.${parameter.get("name")}` }
-                      onChange={ this.onChange }
-                      onChangeConsumes={this.onChangeConsumesWrapper}
-                      specSelectors={ specSelectors }
-                      specActions={specActions}
-                      pathMethod={ pathMethod }
-                      isExecute={ isExecute }/>
-                  )).toArray()
-                }
-              </tbody>
+                </tbody>
+              </form>
             </table>
           </div>
         }
