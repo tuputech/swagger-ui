@@ -262,6 +262,7 @@ export default class ParameterRow extends Component {
             : <JsonSchemaForm fn={fn}
                               getComponent={getComponent}
                               value={ value }
+                              keyName={ param.get("name") }
                               required={ required }
                               description={param.get("description") ? `${param.get("name")} - ${param.get("description")}` : `${param.get("name")}`}
                               placeholder=''// Added by Nickel #2019/05/15 

@@ -64,11 +64,13 @@ export class JsonSchema_string extends Component {
   static defaultProps = JsonSchemaDefaultProps
   onChange = (e) => {
     const value = this.props.schema["type"] === "file" ? e.target.files[0] : e.target.value
-    this.props.onChange(value, this.props.keyName)
+    //this.props.onChange(value, this.props.keyName)
+    // Modified by Nickel #2019/05/28
+    this.props.onChange(value, false, this.props.keyName)
   }
   onEnumChange = (val) => this.props.onChange(val)
   render() {
-    let { getComponent, value, schema, errors, required, /*description,*/ placeholder, } = this.props
+    let { getComponent, value, schema, errors, required, /*description,*/ placeholder, keyName, } = this.props
     let enumValue = schema["enum"]
 
     errors = errors.toJS ? errors.toJS() : []
@@ -89,6 +91,7 @@ export class JsonSchema_string extends Component {
       return (<Input type="file"
                      className={ errors.length ? "invalid" : ""}
                      title={ errors.length ? errors : ""}
+                     name={ keyName /* Add by Nickel #2019/05/28 */ }
                      onChange={ this.onChange }
                      disabled={isDisabled}/>)
     }
