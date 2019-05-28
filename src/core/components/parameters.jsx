@@ -91,8 +91,8 @@ export default class Parameters extends Component {
         </div>
         { !parameters.count() ? <div className="opblock-description-wrapper"><p>No parameters</p></div> :
           <div className="table-container">
-            <table className="parameters">
-              <form acceptCharset="UTF-8" className="sandbox">
+            <form acceptCharset="UTF-8" className="sandbox" style={{margin:0,padding:0,border:0,display:"block"}}>
+              <table className="parameters">
                 <thead>
                   <tr>
                     <th className="col col_header parameters-col_name">{getLangText("Name")}</th>
@@ -124,8 +124,8 @@ export default class Parameters extends Component {
                     )).toArray()
                   }
                 </tbody>
-              </form>
-            </table>
+              </table>
+            </form>
           </div>
         }
       </div>
