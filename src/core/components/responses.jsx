@@ -104,7 +104,7 @@ export default class Responses extends React.Component {
                                                 path={ this.props.path }
                                                 method={ this.props.method }
                                                 displayRequestDuration={ displayRequestDuration } />
-                                  <h4>{ getLangText("Responses' Examples") }</h4>
+                                  <h4>{ getLangText("Response examples") }</h4>
                                 </div>
 
           }
