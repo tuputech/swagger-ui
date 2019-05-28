@@ -96,7 +96,7 @@ export default class ObjectModel extends Component {
                         propertyStyle.fontWeight = "bold"
                       }
 
-                      return (<tr key={key} className={isDeprecated && "deprecated"}>
+                      return (<tr key={key} className={isDeprecated ? "deprecated" : ""}>
                         <td style={ propertyStyle }>
                           { key }{ isRequired && <span style={{ color: "red" }}>*</span> }
                         </td>

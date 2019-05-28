@@ -91,7 +91,6 @@ export class JsonSchema_string extends Component {
       return (<Input type="file"
                      className={ errors.length ? "invalid" : ""}
                      title={ errors.length ? errors : ""}
-                     name={ keyName /* Add by Nickel #2019/05/28 */ }
                      onChange={ this.onChange }
                      disabled={isDisabled}/>)
     }
