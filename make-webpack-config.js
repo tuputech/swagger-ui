@@ -135,8 +135,8 @@ module.exports = function(rules, options) {
 
     externals: {
       "buffertools": true, // json-react-schema/deeper depends on buffertools, which fails.
+      // Added by Nickel #2019/05/28
       "react": "React",
-      //"react-dom": "ReactDOM",
     },
 
     resolve: {

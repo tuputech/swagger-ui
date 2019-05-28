@@ -63,7 +63,7 @@
     "memoizee": "^0.4.12",
     "prop-types": "^15.5.10",
     "react": "^16.8.6",
-    "react-addons-perf": "^15.4.0",
+    "react-addons-perf": "^15.4.2",
     "react-debounce-input": "^3.2.0",
     "react-dom": "^16.8.6",
     "react-immutable-proptypes": "2.1.0",
