@@ -36,10 +36,10 @@ module.exports = require("./make-webpack-config.js")(rules, {
 
   externals: function(context, request, cb) {
     // Added by Nickel #2019/05/28
-    if (request === "react") {
-      cb(null, "var window.React")
-      return
-    }
+    // if (request === "react") {
+    //   cb(null, "var window.React")
+    //   return
+    // }
     // webpack injects some stuff into the resulting file,
     // these libs need to be pulled in to keep that working.
     var exceptionsForWebpack = ["ieee754", "base64-js"]
