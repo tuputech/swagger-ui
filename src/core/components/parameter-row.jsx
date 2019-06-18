@@ -306,8 +306,8 @@ export default class ParameterRow extends Component {
               //only show example on the right side of edit-box
               bodyParam && this.state.bodyParamTab === "model" ?
               <div>
-                <div className="example_caption">{getLangText("Example Value")}</div>
-                <HighlightCode className="body-param__example" value={ jsonExample } getConfigs={ getConfigs }/>
+                <div className="example_caption fucktest">{getLangText("Example Value")}</div>
+                <HighlightCode className="body-param__example fucktest" value={ paramExample } param={param} getConfigs={ getConfigs }/>
               </div>
               : null
             }
