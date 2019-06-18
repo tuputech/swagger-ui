@@ -208,7 +208,7 @@ export default class ParameterRow extends Component {
       // Added by Nickel #2019/05/16
       HighlightCode = getComponent("highlightCode")
       jsonExample = param.get("value")
-      // Added by Nickel #2019/06/18
+      // Added by Nickel for only displaying original json  #2019/06/18
       if (jsonExample && !this.state.keepOriginalJsonExample) {
         try {
           this.state.keepOriginalJsonExample = JSON.parse(JSON.stringify(jsonExample))
@@ -319,7 +319,7 @@ export default class ParameterRow extends Component {
               bodyParam && this.state.bodyParamTab === "model" ?
               <div>
                 <div className="example_caption">{getLangText("Example Value")}</div>
-                <HighlightCode className="body-param__example" value={ jsonExample } param={param} getConfigs={ getConfigs }/>
+                <HighlightCode className="body-param__example" value={ jsonExample } getConfigs={ getConfigs }/>
               </div>
               : null
             }
