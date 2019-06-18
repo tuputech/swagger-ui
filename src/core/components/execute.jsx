@@ -23,6 +23,11 @@ export default class Execute extends Component {
       if(this.props.onExecute) {
         this.props.onExecute()
       }
+
+      // Added by Nickel for clearing before execute #2019/06/18
+      specActions.clearResponse( path, method )
+      specActions.clearRequest( path, method )
+
       specActions.execute( { operation, path, method } )
     }
   }
