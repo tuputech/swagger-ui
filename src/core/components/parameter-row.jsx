@@ -28,7 +28,9 @@ export default class ParameterRow extends Component {
 
     // Added by Nickel #2019/05/16
     this.state = {
-      bodyParamTab: ""
+      bodyParamTab: "",
+
+      keepOriginalJsonExample: null, // Added by Nickel #2019/06/18
     }
   }
 
@@ -206,6 +208,16 @@ export default class ParameterRow extends Component {
       // Added by Nickel #2019/05/16
       HighlightCode = getComponent("highlightCode")
       jsonExample = param.get("value")
+      // Added by Nickel #2019/06/18
+      if (jsonExample && !this.state.keepOriginalJsonExample) {
+        try {
+          this.state.keepOriginalJsonExample = JSON.parse(JSON.stringify(jsonExample))
+        }
+        catch(e) {}
+      }
+      else {
+        jsonExample = this.state.keepOriginalJsonExample || {}
+      }
     }
 
     return (
@@ -306,8 +318,8 @@ export default class ParameterRow extends Component {
               //only show example on the right side of edit-box
               bodyParam && this.state.bodyParamTab === "model" ?
               <div>
-                <div className="example_caption fucktest">{getLangText("Example Value")}</div>
-                <HighlightCode className="body-param__example fucktest" value={ paramExample } param={param} getConfigs={ getConfigs }/>
+                <div className="example_caption">{getLangText("Example Value")}</div>
+                <HighlightCode className="body-param__example" value={ jsonExample } param={param} getConfigs={ getConfigs }/>
               </div>
               : null
             }
