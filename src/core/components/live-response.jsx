@@ -37,7 +37,9 @@ export default class LiveResponse extends React.Component {
     displayRequestDuration: PropTypes.bool.isRequired,
     specSelectors: PropTypes.object.isRequired,
     getComponent: PropTypes.func.isRequired,
-    getConfigs: PropTypes.func.isRequired
+    getConfigs: PropTypes.func.isRequired,
+     // Added by Nickel #2019/12/05
+    fn: PropTypes.object.isRequired,
   }
 
   shouldComponentUpdate(nextProps) {
@@ -50,7 +52,7 @@ export default class LiveResponse extends React.Component {
   }
 
   render() {
-    const { response, getComponent, getConfigs, displayRequestDuration, specSelectors, path, method } = this.props
+    const { response, getComponent, getConfigs, displayRequestDuration, specSelectors, path, method, fn, } = this.props
     // Added by Nickel with getLangText #2019/05/21
     const { showMutatedRequest, getLangText } = getConfigs()
 
@@ -115,6 +117,7 @@ export default class LiveResponse extends React.Component {
                                        headers={ headers }
                                        getComponent={ getComponent }
                                        getConfigs={ getConfigs }
+                                       fn={ fn }
                         />
                        : null
                 }

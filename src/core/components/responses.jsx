@@ -101,6 +101,7 @@ export default class Responses extends React.Component {
                                                 getComponent={ getComponent }
                                                 getConfigs={ getConfigs }
                                                 specSelectors={ specSelectors }
+                                                fn={ fn }
                                                 path={ this.props.path }
                                                 method={ this.props.method }
                                                 displayRequestDuration={ displayRequestDuration } />
