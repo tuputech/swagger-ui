@@ -114,6 +114,7 @@ export default class LiveResponse extends React.Component {
                   body ? <ResponseBody content={ body }
                                        contentType={ contentType }
                                        url={ url }
+                                       path={ path }
                                        headers={ headers }
                                        getComponent={ getComponent }
                                        getConfigs={ getConfigs }
