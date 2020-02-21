@@ -1,6 +1,6 @@
 {
   "name": "@tuputech/swagger-ui",
-  "version": "3.21.0",
+  "version": "3.21.1",
   "main": "dist/swagger-ui.js",
   "repository": "git@github.com:swagger-api/swagger-ui.git",
   "contributors": [
@@ -50,6 +50,7 @@
     "@kyleshockey/js-yaml": "^1.0.1",
     "@kyleshockey/object-assign-deep": "^0.4.2",
     "@kyleshockey/xml": "^1.0.2",
+    "@tuputech/swagger-client": "git+ssh://git@github.com:tuputech/swagger-js.git",
     "base64-js": "^1.2.0",
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",

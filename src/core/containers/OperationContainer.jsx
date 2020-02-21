@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
 import ImPropTypes from "react-immutable-proptypes"
-import { helpers } from "swagger-client"
+import { helpers } from "@tuputech/swagger-client"
 import { Iterable, fromJS, Map } from "immutable"
 
 const { opId } = helpers

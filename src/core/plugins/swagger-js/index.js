@@ -1,4 +1,4 @@
-import Swagger from "swagger-client"
+import Swagger from "@tuputech/swagger-client"
 
 module.exports = function({ configs, getConfigs }) {
   return {
