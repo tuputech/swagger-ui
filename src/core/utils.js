@@ -837,9 +837,6 @@ export function paramToValue(param, paramValues) {
   // and return the first value found
   const values = allIdentifiers
     .map(id => {
-      if (paramValues[id]) {
-        console.log('---------------- param-2-value: ', id, paramValues[id], '; typeof: ', typeof paramValues[id], ', is-array:', Array.isArray(paramValues[id]), ', is-list:', List.isList(paramValues[id]))
-      }
       return paramValues[id]
     })
     .filter(value => value !== undefined)
