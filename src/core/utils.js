@@ -1,4 +1,4 @@
-import Im from "immutable"
+import Im, { List } from "immutable"
 import { sanitizeUrl as braintreeSanitizeUrl } from "@braintree/sanitize-url"
 import camelCase from "lodash/camelCase"
 import upperFirst from "lodash/upperFirst"
@@ -837,6 +837,7 @@ export function paramToValue(param, paramValues) {
   // and return the first value found
   const values = allIdentifiers
     .map(id => {
+      console.log('---------------- param-2-value: ', paramValues[id], '; typeof %s, is-list: ', typeof paramValues[id], List.isList(paramValues[id]))
       return paramValues[id]
     })
     .filter(value => value !== undefined)
