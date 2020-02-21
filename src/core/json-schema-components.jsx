@@ -125,7 +125,7 @@ export class JsonSchema_array extends PureComponent {
       this.setState({value: props.value})
   }
 
-  onChange = () => this.props.onChange(this.state.value)
+  onChange = () => this.props.onChange(this.state.value.toArray())
 
   onItemChange = (itemVal, i) => {
     this.setState(state => ({
@@ -195,7 +195,7 @@ export class JsonSchema_array extends PureComponent {
             )
           }).toArray()
         }
-        <Button className={`btn btn-sm json-schema-form-item-add ${errors.length ? "invalid" : null}`} onClick={this.addItem}> Add item </Button>
+        <Button className={`btn btn-sm json-schema-form-item-add ${errors.length ? "invalid" : null}`} onClick={this.addItem} data-value={this.state.value.toArray()}> Add item </Button>
       </div>
     )
   }
